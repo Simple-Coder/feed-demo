@@ -3,7 +3,7 @@ server:
   servlet:
     context-path: /feed-demo/
 
-spring: #springboot的配置
+spring: #springboot的配置..
   datasource: #定义数据源
     #127.0.0.1为本机测试的ip，3306是mysql的端口号。serverTimezone是定义时区，照抄就好，mysql高版本需要定义这些东西
     #useSSL也是某些高版本mysql需要问有没有用SSL连接
