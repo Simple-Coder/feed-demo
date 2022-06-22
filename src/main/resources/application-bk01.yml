@@ -3,6 +3,25 @@ server:
   servlet:
     context-path: /feed-demo/
 
+# JDBC 中的数据源的别名。在集群模式，使用该参数联通 ShardingSphere-JDBC 与 ShardingSphere-Proxy 共同使用。
+# 默认值：logic_db
+schemaName (?):
+
+mode:
+
+dataSources:
+
+rules:
+  - !FOO_XXX
+    ...
+  - !BAR_XXX
+    ...
+
+props:
+  key_1: value_1
+  key_2: value_2
+
+
 spring: #springboot的配置...
   datasource: #定义数据源
     #127.0.0.1为本机测试的ip，3306是mysql的端口号。serverTimezone是定义时区，照抄就好，mysql高版本需要定义这些东西
