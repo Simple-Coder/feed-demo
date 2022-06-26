@@ -1,7 +1,9 @@
 package com.example.feeddemo.service;
 
-import com.example.feeddemo.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.example.feeddemo.entity.FeedInfo;
+
+import java.util.List;
 
 /**
  * <p>
@@ -11,6 +13,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author xiedong
  * @since 2022-06-19
  */
-public interface UserService extends IService<User> {
+public interface IFeedInfoService extends IService<FeedInfo> {
 
+    List<FeedInfo> getAllByUserId(Long userId);
 }

@@ -1,23 +1,23 @@
 package com.example.feeddemo.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
-import lombok.*;
+import com.baomidou.mybatisplus.annotation.*;
+import lombok.Data;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author xiedong
  * @since 2022-06-19
  */
 @Data
-@TableName("t_user")
-public class User extends BaseEntity implements Serializable {
+@TableName("feed_info")
+//public class FeedInfo extends BaseEntity implements Serializable {
+public class FeedInfo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -29,7 +29,10 @@ public class User extends BaseEntity implements Serializable {
      */
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
-
-    private String userName;
-
+    private Long userId;
+    private String feedContent;
+    //    @TableField(fill = FieldFill.INSERT)
+    private Date createTime;
+    //    @TableField(fill = FieldFill.INSERT_UPDATE)
+    private Date updateTime;
 }

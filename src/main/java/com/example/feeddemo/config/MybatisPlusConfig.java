@@ -31,13 +31,6 @@ public class MybatisPlusConfig implements MetaObjectHandler {
     @Override
     public void insertFill(MetaObject metaObject) {
         //为空时，才自动填充
-        if (metaObject.getValue("createName") == null) {
-            setFieldValByName("createName", "xiedong", metaObject);
-        }
-        if (metaObject.getValue("updateName") == null) {
-            setFieldValByName("updateName", "xiedong", metaObject);
-        }
-
         if (metaObject.getValue("createTime") == null) {
             setFieldValByName("createTime", new Date(), metaObject);
         }
@@ -52,9 +45,6 @@ public class MybatisPlusConfig implements MetaObjectHandler {
      */
     @Override
     public void updateFill(MetaObject metaObject) {
-        //直接修改
-        setFieldValByName("updateName", "xiedong", metaObject);
-
         setFieldValByName("updateTime", new Date(), metaObject);
     }
 }

@@ -21,7 +21,7 @@
         <spring-boot-version>2.3.2.RELEASE</spring-boot-version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <mybatis.plus.version>3.4.1</mybatis.plus.version>
+        <mybatis.plus.version>3.4.2</mybatis.plus.version>
         <mysql.connector.version>8.0.16</mysql.connector.version>
         <druid.version>1.1.22</druid.version>
         <hutool.version>5.5.8</hutool.version>
@@ -54,20 +54,6 @@
             <artifactId>mybatis-plus-boot-starter</artifactId>
             <version>${mybatis.plus.version}</version>
         </dependency>
-        <!--mybatis-plus生成依赖-->
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-generator</artifactId>
-            <version>${mybatis.plus.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-freemarker</artifactId>
-            <scope>2.4.4</scope>
-        </dependency>
-
-
-
         <!-- mysql驱动 -->
         <dependency>
             <groupId>mysql</groupId>
@@ -87,21 +73,11 @@
             <version>${druid.version}</version>
         </dependency>
 
-        <!-- 糊涂用具类 -->
+        <!-- hutool用具类 -->
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
             <version>${hutool.version}</version>
-        </dependency>
-
-        <!--redis-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>redis.clients</groupId>
-            <artifactId>jedis</artifactId>
         </dependency>
 
         <!-- lombok插件 -->
@@ -121,4 +97,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>

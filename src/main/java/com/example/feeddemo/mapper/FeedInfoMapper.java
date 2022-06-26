@@ -1,7 +1,8 @@
 package com.example.feeddemo.mapper;
 
-import com.example.feeddemo.entity.User;
+import com.example.feeddemo.entity.FeedInfo;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * <p>
@@ -11,6 +12,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author xiedong
  * @since 2022-06-19
  */
-public interface UserMapper extends BaseMapper<User> {
+@Mapper
+public interface FeedInfoMapper extends BaseMapper<FeedInfo> {
 
 }
