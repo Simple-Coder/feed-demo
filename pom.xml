@@ -29,6 +29,16 @@
     </properties>
 
     <dependencies>
+        <!--加密-->
+        <!-- jdk8 版本 整合jasypt对数据库密码加密 -->
+
+        <dependency>
+            <groupId>com.github.ulisesbocchio</groupId>
+            <artifactId>jasypt-spring-boot-starter</artifactId>
+            <version>1.14</version>
+
+        </dependency>
+
         <!-- web启动 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
