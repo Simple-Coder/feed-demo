@@ -22,9 +22,9 @@ class FeedDemoApplicationTests {
     public void t1(){
         for (int i = 0; i < 2; i++) {
             FeedInfo feedInfo = new FeedInfo();
-            feedInfo.setId(Long.parseLong(RandomUtil.randomNumbers(5)));
             feedInfo.setFeedContent("feedContent"+i);
             feedInfo.setUserId(Long.parseLong(RandomUtil.randomNumbers(5)));
+            feedInfo.setFeedStatus(1);
             feedInfo.setCreateTime(new Date());
             feedInfo.setUpdateTime(new Date());
             feedInfoMapper.insert(feedInfo);
