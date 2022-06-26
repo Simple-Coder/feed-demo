@@ -26,6 +26,13 @@ public class FeedInfoController {
     @Autowired
     private IFeedInfoService feedInfoService;
 
+
+    @GetMapping("/testInsert")
+    public void testInsert() {
+        this.feedInfoService.test();
+    }
+
+
     @GetMapping("/list")
     public Page<FeedInfo> list(@RequestParam(defaultValue = "1") Integer page,
                                @RequestParam(defaultValue = "10") Integer size) {

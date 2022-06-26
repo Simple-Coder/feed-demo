@@ -1,7 +1,7 @@
 package com.example.feeddemo.mapper;
 
-import com.example.feeddemo.entity.FeedInfo;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.example.feeddemo.entity.FeedInfo;
 import org.apache.ibatis.annotations.Mapper;
 
 /**

@@ -7,6 +7,7 @@
         <id column="id" property="id"/>
         <result column="user_id" property="userId"/>
         <result column="feed_content" property="feedContent"/>
+        <result column="feed_status" property="feedStatus"/>
         <result column="create_time" property="createTime"/>
         <result column="update_time" property="updateTime"/>
     </resultMap>
@@ -14,7 +15,7 @@
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
         id
-        , userId, feedContent,createTime,updateTime
+        , userId,feed_status, feedContent,createTime,updateTime
     </sql>
 
 </mapper>
