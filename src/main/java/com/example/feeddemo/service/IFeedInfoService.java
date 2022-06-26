@@ -16,4 +16,6 @@ import java.util.List;
 public interface IFeedInfoService extends IService<FeedInfo> {
 
     List<FeedInfo> getAllByUserId(Long userId);
+
+    void test();
 }
