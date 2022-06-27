@@ -41,3 +41,18 @@ create table `user_feed_0`
     `update_time`  datetime comment '更新时间',
     primary key (`id`) USING BTREE
 )ENGINE=InnoDB character set = utf8mb4 collate=utf8mb4_general_ci comment='userFeed 关系表';
+
+
+
+create table user_follow_infos
+(
+    id bigint auto_increment,
+    user_id bigint null comment '用户id',
+    big_v_status int default 0 null comment '大V标识(0-否，1-是)',
+    follow_user_id int null comment '关注用户id',
+    create_time datetime null comment '创建时间',
+    update_time datetime null comment '更新时间',
+    constraint user_follow_infos_pk
+        primary key (id)
+)
+    comment '用户关注信息表';
