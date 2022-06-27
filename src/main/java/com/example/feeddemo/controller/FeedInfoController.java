@@ -6,9 +6,13 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.feeddemo.common.R;
 import com.example.feeddemo.entity.FeedInfo;
 import com.example.feeddemo.service.IFeedInfoService;
+import com.example.feeddemo.vo.HomeFeedReqInfo;
+import com.example.feeddemo.vo.HomeFeedRspInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * <p>
@@ -19,7 +23,7 @@ import org.springframework.web.bind.annotation.*;
  * @since 2022-06-19
  */
 @RestController
-@RequestMapping("/feed")
+@RequestMapping("/feed/v1")
 @Slf4j
 public class FeedInfoController {
     @Autowired
@@ -30,6 +34,16 @@ public class FeedInfoController {
     public R<Object> testInsert() {
         this.feedInfoService.test();
         return R.ok();
+    }
+
+    @GetMapping("/userHome")
+    public R<List<HomeFeedRspInfo>> getUserHomeV1(HomeFeedReqInfo reqInfo) {
+        try {
+            return R.ok(feedInfoService.getUserHomeFeedListV1(reqInfo));
+        } catch (Exception e) {
+            log.error("userHome exception", e);
+        }
+        return R.failed();
     }
 
 

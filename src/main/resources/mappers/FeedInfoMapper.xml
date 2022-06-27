@@ -18,4 +18,11 @@
         , user_id,feed_status, feedContent,createTime,updateTime
     </sql>
 
+    <select id="getUserHomeV1" resultType="feedInfo">
+        select *
+        from feed_info
+        where user_id = #{userId}
+          and create_time <![CDATA[ <= ]]> #{lastTime}
+        order by create_time desc limit #{num}
+    </select>
 </mapper>
