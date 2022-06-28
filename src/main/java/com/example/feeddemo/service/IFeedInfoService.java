@@ -2,6 +2,7 @@ package com.example.feeddemo.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.feeddemo.entity.FeedInfo;
+import com.example.feeddemo.vo.FeedPublishReqInfo;
 import com.example.feeddemo.vo.HomeFeedReqInfo;
 import com.example.feeddemo.vo.HomeFeedRspInfo;
 
@@ -9,7 +10,7 @@ import java.util.List;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author xiedong
@@ -21,11 +22,19 @@ public interface IFeedInfoService extends IService<FeedInfo> {
 
     /**
      * 获取用户动态
+     *
      * @param reqInfo
      * @return
      */
     List<HomeFeedRspInfo> getUserHomeFeedListV1(HomeFeedReqInfo reqInfo);
 
+    /**
+     * 发表动态
+     *
+     * @param reqInfo
+     * @return
+     */
+    boolean publishFeed(FeedPublishReqInfo reqInfo);
 
 
     void test();

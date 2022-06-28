@@ -9,6 +9,7 @@ import com.example.feeddemo.entity.FeedInfo;
 import com.example.feeddemo.mapper.FeedInfoMapper;
 import com.example.feeddemo.service.IFeedInfoService;
 import com.example.feeddemo.utils.DateUtil;
+import com.example.feeddemo.vo.FeedPublishReqInfo;
 import com.example.feeddemo.vo.HomeFeedReqInfo;
 import com.example.feeddemo.vo.HomeFeedRspInfo;
 import lombok.extern.slf4j.Slf4j;
@@ -46,12 +47,22 @@ public class IFeedInfoServiceImpl extends ServiceImpl<FeedInfoMapper, FeedInfo> 
                 HomeFeedRspInfo rspInfo = new HomeFeedRspInfo();
                 rspInfo.setUserId(feedInfo.getUserId());
                 rspInfo.setContent(feedInfo.getFeedContent());
-                rspInfo.setTitile(DateUtil.convertTimeToTip(feedInfo.getCreateTime().getTime())+"发表了动态");
+                rspInfo.setTitile(DateUtil.convertTimeToTip(feedInfo.getCreateTime().getTime()) + "发表了动态");
                 rspInfos.add(rspInfo);
             }
             return rspInfos;
         }
         return Collections.emptyList();
+    }
+
+
+    @Override
+    public boolean publishFeed(FeedPublishReqInfo reqInfo) {
+        FeedInfo feedInfo = new FeedInfo();
+        feedInfo.setFeedStatus(1);
+        feedInfo.setUserId(reqInfo.getUserId());
+        feedInfo.setFeedContent(reqInfo.getContent());
+        return this.save(feedInfo);
     }
 
     @Override

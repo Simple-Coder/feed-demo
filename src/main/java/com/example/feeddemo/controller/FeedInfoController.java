@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.feeddemo.common.R;
 import com.example.feeddemo.entity.FeedInfo;
 import com.example.feeddemo.service.IFeedInfoService;
+import com.example.feeddemo.vo.FeedPublishReqInfo;
 import com.example.feeddemo.vo.HomeFeedReqInfo;
 import com.example.feeddemo.vo.HomeFeedRspInfo;
 import lombok.extern.slf4j.Slf4j;
@@ -36,12 +37,28 @@ public class FeedInfoController {
         return R.ok();
     }
 
+    /**
+     * 查看个人主页
+     *
+     * @param reqInfo
+     * @return
+     */
     @GetMapping("/userHome")
     public R<List<HomeFeedRspInfo>> getUserHomeV1(HomeFeedReqInfo reqInfo) {
         try {
             return R.ok(feedInfoService.getUserHomeFeedListV1(reqInfo));
         } catch (Exception e) {
             log.error("userHome exception", e);
+        }
+        return R.failed();
+    }
+
+    @PutMapping("/publish")
+    public R publishFeed(@RequestBody FeedPublishReqInfo reqInfo) {
+        try {
+            return R.ok(feedInfoService.publishFeed(reqInfo));
+        } catch (Exception e) {
+            log.error("publish feed error", e);
         }
         return R.failed();
     }
