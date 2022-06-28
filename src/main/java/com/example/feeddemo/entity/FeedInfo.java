@@ -32,8 +32,8 @@ public class FeedInfo implements Serializable {
     private Long userId;
     private String feedContent;
     private int feedStatus;
-    //    @TableField(fill = FieldFill.INSERT)
+    @TableField(fill = FieldFill.INSERT)
     private Date createTime;
-    //    @TableField(fill = FieldFill.INSERT_UPDATE)
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     private Date updateTime;
 }
