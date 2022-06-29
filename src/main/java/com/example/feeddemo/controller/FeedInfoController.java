@@ -56,7 +56,10 @@ public class FeedInfoController {
     @PutMapping("/publish")
     public R publishFeed(@RequestBody FeedPublishReqInfo reqInfo) {
         try {
-            return R.ok(feedInfoService.publishFeed(reqInfo));
+//            return R.ok(feedInfoService.publishFeed(reqInfo));
+            //普通用户：发表动态并且写扩散
+
+            feedInfoService.publishFeed(reqInfo);
         } catch (Exception e) {
             log.error("publish feed error", e);
         }
