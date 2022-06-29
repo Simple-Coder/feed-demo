@@ -67,6 +67,13 @@ public class IFeedInfoServiceImpl extends ServiceImpl<FeedInfoMapper, FeedInfo> 
         return saveFlag ? feedInfo.getId() : 0L;
     }
 
+    @Override
+    public FeedInfo getByUserIdAndId(Long feedId, Long userId) {
+        QueryWrapper<FeedInfo> wrapper = new QueryWrapper<>();
+        wrapper.eq("user_id", userId);
+        wrapper.eq("id", feedId);
+        return feedInfoMapper.selectOne(wrapper);
+    }
 
     @Override
     public List<FeedInfo> getAllByUserId(Long userId) {

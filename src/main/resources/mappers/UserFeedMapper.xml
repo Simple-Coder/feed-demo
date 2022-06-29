@@ -19,4 +19,11 @@
         , user_id,,feed_id,feed_user_id,feed_status,createTime,updateTime
     </sql>
 
+    <select id="getUserFeedByUserIdV1" resultType="userFeed">
+        select * from user_feed where user_id=#{userId}
+        <if test="userFeedId != null and userFeedId gt 0">
+            and create_time <![CDATA[ < ]]> #{userFeedId}
+        </if>
+        order by create_time desc limit #{num}
+    </select>
 </mapper>

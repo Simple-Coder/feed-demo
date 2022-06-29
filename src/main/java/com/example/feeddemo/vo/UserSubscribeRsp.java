@@ -1,6 +1,9 @@
 package com.example.feeddemo.vo;
 
+import com.example.feeddemo.entity.FeedInfo;
 import lombok.Data;
+
+import java.util.List;
 
 /**
  * Created by xiedong
@@ -8,5 +11,7 @@ import lombok.Data;
  */
 @Data
 public class UserSubscribeRsp {
-
+    private Long lastId;
+    private Long lastTime;
+    List<FeedInfo> feedInfos;
 }

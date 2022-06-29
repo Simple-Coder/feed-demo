@@ -36,6 +36,7 @@ public interface IFeedInfoService extends IService<FeedInfo> {
      */
     Long publishFeed(FeedPublishReqInfo reqInfo);
 
+    FeedInfo getByUserIdAndId(Long feedId,Long userId);
 
 
     void test();

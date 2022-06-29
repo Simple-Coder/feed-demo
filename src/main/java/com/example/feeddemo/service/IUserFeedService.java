@@ -5,8 +5,6 @@ import com.example.feeddemo.entity.UserFeed;
 import com.example.feeddemo.vo.UserSubscribeReq;
 import com.example.feeddemo.vo.UserSubscribeRsp;
 
-import java.util.List;
-
 /**
  * Created by xiedong
  * Date: 2022/6/26
@@ -20,5 +18,5 @@ public interface IUserFeedService extends IService<UserFeed> {
      * @param subscribeReq
      * @return
      */
-    List<UserSubscribeRsp> getUserSubscribe(UserSubscribeReq subscribeReq);
+    UserSubscribeRsp getUserSubscribe(UserSubscribeReq subscribeReq);
 }

@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
 /**
  * Created by xiedong
  * Date: 2022/6/26
@@ -29,7 +27,7 @@ public class UserFeedController {
     }
 
     @GetMapping("/subscribe")
-    public R<List<UserSubscribeRsp>> userSubscribe(UserSubscribeReq subscribeReq) {
+    public R<UserSubscribeRsp> userSubscribe(UserSubscribeReq subscribeReq) {
         return R.ok(userFeedService.getUserSubscribe(subscribeReq));
     }
 }
