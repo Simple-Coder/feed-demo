@@ -16,10 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * <p>
@@ -38,6 +35,9 @@ public class IFeedInfoServiceImpl extends ServiceImpl<FeedInfoMapper, FeedInfo> 
     @Override
     public List<HomeFeedRspInfo> getUserHomeFeedListV1(HomeFeedReqInfo reqInfo) {
         log.info("userHome v1 userId:{},lastId:{},lastTime:{}", reqInfo.getUserId(), reqInfo.getLastId(), reqInfo.getLastTime());
+        if(Objects.isNull(reqInfo.getLastTime()) || reqInfo.getLastTime() ==0){
+            reqInfo.setLastTime(DateUtil.current());
+        }
         Date createTimeDate = new Date(reqInfo.getLastTime());
         String lastDateStr = DateUtil.format(createTimeDate, DatePattern.NORM_DATETIME_FORMAT);
         List<FeedInfo> userHomeV1 = feedInfoMapper.getUserHomeV1(reqInfo.getUserId(), lastDateStr, reqInfo.getNum());
