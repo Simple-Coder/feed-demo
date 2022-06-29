@@ -91,6 +91,7 @@ public class FeedInfoController {
             } else {
                 log.info("当前用户userId:{}是大v", userInfoByUserId.getUserId());
             }
+            return R.ok("发表成功");
         } catch (Exception e) {
             log.error("publish feed error", e);
         }

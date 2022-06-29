@@ -25,7 +25,8 @@ public class IUserFeedServiceImpl extends ServiceImpl<UserFeedMapper, UserFeed> 
     public void test() {
         for (int i = 0; i < 2; i++) {
             UserFeed userFeed = new UserFeed();
-            userFeed.setUserId(Long.parseLong(RandomUtil.randomNumbers(5)));
+//            userFeed.setUserId(Long.parseLong(RandomUtil.randomNumbers(5)));
+            userFeed.setUserId(1003L);
             userFeed.setFeedUserId(Long.parseLong(RandomUtil.randomNumbers(5)));
             userFeed.setFeedId(Long.parseLong(RandomUtil.randomNumbers(5)));
             userFeed.setFeedStatus(1);
