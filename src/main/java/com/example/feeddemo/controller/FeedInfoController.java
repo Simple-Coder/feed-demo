@@ -1,11 +1,19 @@
 package com.example.feeddemo.controller;
 
 
+import cn.hutool.core.collection.CollUtil;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.feeddemo.common.R;
+import com.example.feeddemo.constants.CommonConstants;
 import com.example.feeddemo.entity.FeedInfo;
+import com.example.feeddemo.entity.UserFeed;
+import com.example.feeddemo.entity.UserFollowInfos;
+import com.example.feeddemo.entity.UserInfo;
 import com.example.feeddemo.service.IFeedInfoService;
+import com.example.feeddemo.service.IUserFeedService;
+import com.example.feeddemo.service.IUserFollowerInfosService;
+import com.example.feeddemo.service.IUserInfoService;
 import com.example.feeddemo.vo.FeedPublishReqInfo;
 import com.example.feeddemo.vo.HomeFeedReqInfo;
 import com.example.feeddemo.vo.HomeFeedRspInfo;
@@ -29,6 +37,12 @@ import java.util.List;
 public class FeedInfoController {
     @Autowired
     private IFeedInfoService feedInfoService;
+    @Autowired
+    private IUserInfoService userInfoService;
+    @Autowired
+    private IUserFollowerInfosService userFollowerInfosService;
+    @Autowired
+    private IUserFeedService userFeedService;
 
 
     @GetMapping("/testInsert")
@@ -57,9 +71,26 @@ public class FeedInfoController {
     public R publishFeed(@RequestBody FeedPublishReqInfo reqInfo) {
         try {
 //            return R.ok(feedInfoService.publishFeed(reqInfo));
+            Long feedId = feedInfoService.publishFeed(reqInfo);
             //普通用户：发表动态并且写扩散
-
-            feedInfoService.publishFeed(reqInfo);
+            UserInfo userInfoByUserId = userInfoService.getUserInfoByUserId(reqInfo.getUserId());
+            if (userInfoByUserId.getUserType() == CommonConstants.COMMON_USER) {
+                List<UserFollowInfos> fansUserIds = userFollowerInfosService.getFansUserId(userInfoByUserId.getUserId());
+                if (CollUtil.isNotEmpty(fansUserIds)) {
+                    for (UserFollowInfos fansUserInfos : fansUserIds) {
+                        UserFeed userFeed = new UserFeed();
+                        userFeed.setUserId(fansUserInfos.getUserId());
+                        userFeed.setFeedUserId(reqInfo.getUserId());
+                        userFeed.setFeedStatus(CommonConstants.FEED_STATUS_NORMAL);
+                        userFeed.setFeedId(feedId);
+                        userFeedService.save(userFeed);
+                    }
+                } else {
+                    log.error("当前用户userId:{}没有粉丝", userInfoByUserId.getUserId());
+                }
+            } else {
+                log.info("当前用户userId:{}是大v", userInfoByUserId.getUserId());
+            }
         } catch (Exception e) {
             log.error("publish feed error", e);
         }

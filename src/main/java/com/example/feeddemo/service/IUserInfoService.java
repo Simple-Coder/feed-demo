@@ -9,4 +9,6 @@ import com.example.feeddemo.entity.UserInfo;
  * 用户信息服务类
  */
 public interface IUserInfoService extends IService<UserInfo> {
+
+    UserInfo getUserInfoByUserId(Long userId);
 }

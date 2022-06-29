@@ -1,5 +1,6 @@
 package com.example.feeddemo.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.feeddemo.entity.UserInfo;
 import com.example.feeddemo.mapper.UserInfoMapper;
@@ -17,4 +18,11 @@ import org.springframework.stereotype.Service;
 public class IUserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> implements IUserInfoService {
     @Autowired
     private UserInfoMapper userInfoMapper;
+
+    @Override
+    public UserInfo getUserInfoByUserId(Long userId) {
+        QueryWrapper<UserInfo> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("user_id", userId);
+        return userInfoMapper.selectOne(queryWrapper);
+    }
 }
