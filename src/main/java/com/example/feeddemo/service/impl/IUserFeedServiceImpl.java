@@ -5,11 +5,14 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.feeddemo.entity.UserFeed;
 import com.example.feeddemo.mapper.UserFeedMapper;
 import com.example.feeddemo.service.IUserFeedService;
+import com.example.feeddemo.vo.UserSubscribeReq;
+import com.example.feeddemo.vo.UserSubscribeRsp;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by xiedong
@@ -20,6 +23,11 @@ import java.util.Date;
 public class IUserFeedServiceImpl extends ServiceImpl<UserFeedMapper, UserFeed> implements IUserFeedService {
     @Autowired
     private UserFeedMapper userFeedMapper;
+
+    @Override
+    public List<UserSubscribeRsp> getUserSubscribe(UserSubscribeReq subscribeReq) {
+        return null;
+    }
 
     @Override
     public void test() {

@@ -1,5 +1,7 @@
 package com.example.feeddemo.entity;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
@@ -17,9 +19,9 @@ public class UserFeed implements Serializable {
     private Long userId;
     private Long feedId;
     private Long feedUserId;
-    //    @TableField(fill = FieldFill.INSERT)
+    @TableField(fill = FieldFill.INSERT)
     private Date createTime;
-    //    @TableField(fill = FieldFill.INSERT_UPDATE)
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     private Date updateTime;
     private int feedStatus;
 }
