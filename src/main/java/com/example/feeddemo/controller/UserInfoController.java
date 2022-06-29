@@ -25,6 +25,7 @@ public class UserInfoController {
 
     @PutMapping("/add")
     public R addUser(@RequestBody UserInfoAddReq req) {
+//        int a = 1/0;
         UserInfo userInfo = new UserInfo();
         userInfo.setUserId(req.getUserId());
         userInfo.setNickname(req.getNickname());
