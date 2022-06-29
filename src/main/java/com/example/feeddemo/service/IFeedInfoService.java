@@ -34,7 +34,8 @@ public interface IFeedInfoService extends IService<FeedInfo> {
      * @param reqInfo
      * @return
      */
-    boolean publishFeed(FeedPublishReqInfo reqInfo);
+    Long publishFeed(FeedPublishReqInfo reqInfo);
+
 
 
     void test();

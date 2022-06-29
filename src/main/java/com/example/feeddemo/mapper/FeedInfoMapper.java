@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * <p>
- *  Mapper 接口
+ * Mapper 接口
  * </p>
  *
  * @author xiedong
@@ -17,7 +17,7 @@ import java.util.List;
  */
 @Mapper
 public interface FeedInfoMapper extends BaseMapper<FeedInfo> {
-    List<FeedInfo> getUserHomeV1(@Param("userId")Long userId,
+    List<FeedInfo> getUserHomeV1(@Param("userId") Long userId,
                                  @Param("lastTime") String lastTime,
                                  @Param("num") int num);
 }

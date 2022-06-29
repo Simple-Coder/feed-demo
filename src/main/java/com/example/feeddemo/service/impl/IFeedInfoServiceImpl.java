@@ -5,6 +5,7 @@ import cn.hutool.core.date.DatePattern;
 import cn.hutool.core.util.RandomUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.example.feeddemo.constants.CommonConstants;
 import com.example.feeddemo.entity.FeedInfo;
 import com.example.feeddemo.mapper.FeedInfoMapper;
 import com.example.feeddemo.service.IFeedInfoService;
@@ -35,7 +36,7 @@ public class IFeedInfoServiceImpl extends ServiceImpl<FeedInfoMapper, FeedInfo> 
     @Override
     public List<HomeFeedRspInfo> getUserHomeFeedListV1(HomeFeedReqInfo reqInfo) {
         log.info("userHome v1 userId:{},lastId:{},lastTime:{}", reqInfo.getUserId(), reqInfo.getLastId(), reqInfo.getLastTime());
-        if(Objects.isNull(reqInfo.getLastTime()) || reqInfo.getLastTime() ==0){
+        if (Objects.isNull(reqInfo.getLastTime()) || reqInfo.getLastTime() == 0) {
             reqInfo.setLastTime(DateUtil.current());
         }
         Date createTimeDate = new Date(reqInfo.getLastTime());
@@ -57,13 +58,15 @@ public class IFeedInfoServiceImpl extends ServiceImpl<FeedInfoMapper, FeedInfo> 
 
 
     @Override
-    public boolean publishFeed(FeedPublishReqInfo reqInfo) {
+    public Long publishFeed(FeedPublishReqInfo reqInfo) {
         FeedInfo feedInfo = new FeedInfo();
-        feedInfo.setFeedStatus(1);
+        feedInfo.setFeedStatus(CommonConstants.FEED_STATUS_NORMAL);
         feedInfo.setUserId(reqInfo.getUserId());
         feedInfo.setFeedContent(reqInfo.getContent());
-        return this.save(feedInfo);
+        boolean saveFlag = this.save(feedInfo);
+        return saveFlag ? feedInfo.getId() : 0L;
     }
+
 
     @Override
     public List<FeedInfo> getAllByUserId(Long userId) {
