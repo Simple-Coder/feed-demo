@@ -1,5 +1,11 @@
 package com.example.feeddemo;
 
+import cn.hutool.json.JSONArray;
+import cn.hutool.json.JSONObject;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.jasypt.util.text.BasicTextEncryptor;
 
 import java.util.ArrayList;
@@ -16,6 +22,17 @@ public class Test {
         userIds.add(3L);
         userIds.add(4L);
         userIds.add(null);
+
+        List<Person> ps = new ArrayList<>();
+        ps.add(Person.builder().username("zhangsan").build());
+        ps.add(Person.builder().username("lisi").build());
+        JSONObject json = new JSONObject();
+        json.put("data",ps);
+        System.out.println(json.toString());
+        JSONArray data = json.getJSONArray("data");
+        System.out.println(json.toString());
+
+
         List<Long> collect1 = userIds.stream().filter(id -> id != null).collect(Collectors.toList());
         boolean querySelf = false;
 
@@ -46,4 +63,11 @@ public class Test {
         System.out.println("--------------------------");
 
     }
+}
+@Data
+@AllArgsConstructor
+@Builder
+@NoArgsConstructor
+class Person{
+    private String username;
 }
