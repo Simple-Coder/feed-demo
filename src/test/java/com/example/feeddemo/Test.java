@@ -16,7 +16,7 @@ public class Test {
     //给配置文件加密
     public static void main(String[] args) {
         Long currentUserId = 2L;
-        List<Long> userIds = new ArrayList<>();
+        List<Object> userIds = new ArrayList<>();
         userIds.add(1L);
         userIds.add(2L);
         userIds.add(3L);
@@ -27,20 +27,25 @@ public class Test {
         ps.add(Person.builder().username("zhangsan").build());
         ps.add(Person.builder().username("lisi").build());
         JSONObject json = new JSONObject();
-        json.put("data",ps);
+        json.put("data", ps);
         System.out.println(json.toString());
         JSONArray data = json.getJSONArray("data");
         System.out.println(json.toString());
 
 
-        List<Long> collect1 = userIds.stream().filter(id -> id != null).collect(Collectors.toList());
+        List<String> collect1 = userIds.stream().filter(id -> id != null).map(id -> {
+            if (id == null) {
+                return null;
+            }
+            return id + "123123";
+        }).collect(Collectors.toList());
         boolean querySelf = false;
 
         if (!querySelf) {
             userIds.remove(currentUserId);
         }
 
-        List<Long> collect = userIds.stream().filter(userId -> (userId != currentUserId)).collect(Collectors.toList());
+//        List<Long> collect = userIds.stream().filter(userId -> (userId != currentUserId)).collect(Collectors.toList());
 
         System.out.println();
 
@@ -64,10 +69,11 @@ public class Test {
 
     }
 }
+
 @Data
 @AllArgsConstructor
 @Builder
 @NoArgsConstructor
-class Person{
+class Person {
     private String username;
 }
