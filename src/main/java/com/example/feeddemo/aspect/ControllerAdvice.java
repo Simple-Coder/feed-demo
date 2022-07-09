@@ -3,7 +3,6 @@ package com.example.feeddemo.aspect;
 import com.example.feeddemo.common.R;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindException;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -29,20 +28,19 @@ public class ControllerAdvice {
     }
 
     @ExceptionHandler(value = {BindException.class, ValidationException.class, MethodArgumentNotValidException.class})
-    public ResponseEntity<R> handleValidatedException(Exception e) {
-        R resp = null;
+    public R<Object> handleValidatedException(Exception e) {
+//        R resp = null;
         if (e instanceof MethodArgumentNotValidException) {
             // BeanValidation exception
             MethodArgumentNotValidException ex = (MethodArgumentNotValidException) e;
-            resp = R.failed(HttpStatus.BAD_REQUEST.value(),
+            return R.restResult(null, HttpStatus.BAD_REQUEST.value(),
                     ex.getBindingResult().getAllErrors().stream()
                             .map(ObjectError::getDefaultMessage)
-                            .collect(Collectors.joining("; "))
-            );
+                            .collect(Collectors.joining("; ")));
         } else if (e instanceof ConstraintViolationException) {
             // BeanValidation GET simple param
             ConstraintViolationException ex = (ConstraintViolationException) e;
-            resp = R.failed(HttpStatus.BAD_REQUEST.value(),
+            return R.restResult(null, HttpStatus.BAD_REQUEST.value(),
                     ex.getConstraintViolations().stream()
                             .map(ConstraintViolation::getMessage)
                             .collect(Collectors.joining("; "))
@@ -50,14 +48,14 @@ public class ControllerAdvice {
         } else if (e instanceof BindException) {
             // BeanValidation GET object param
             BindException ex = (BindException) e;
-            resp = R.failed(HttpStatus.BAD_REQUEST.value(),
+            return R.restResult(null, HttpStatus.BAD_REQUEST.value(),
                     ex.getAllErrors().stream()
                             .map(ObjectError::getDefaultMessage)
                             .collect(Collectors.joining("; "))
             );
         }
-
-        return new ResponseEntity<R>(resp, HttpStatus.BAD_REQUEST);
+        return R.failed();
+//        return new ResponseEntity<R>(resp, HttpStatus.BAD_REQUEST);
     }
 
 }
