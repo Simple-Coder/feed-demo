@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * Created by xiedong
  * Date: 2022/7/9
@@ -25,7 +28,8 @@ public class ValidatorController {
 
     @PostMapping(value = "/valid/add")
     //http://localhost:7879/feeddemo/validate/valid/add?name=javadaily&level=12&email=476938977@qq.com&sex=F
-    public String add(@Validated(value = ValidGroup.Crud.Create.class) TestValidateDTO validVO) {
+    public String add(HttpServletRequest request, HttpServletResponse response,
+                      @Validated(value = ValidGroup.Crud.Create.class) TestValidateDTO validVO) {
         log.info("validEntity is {}", validVO);
         return "test3 valid success";
     }

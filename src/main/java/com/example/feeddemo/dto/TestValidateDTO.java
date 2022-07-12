@@ -29,6 +29,7 @@ public class TestValidateDTO {
     @Email(message = "请填写正确的邮箱地址")
     private String email;
 
+    private int test1=-2;
 
 //    private String id;
 

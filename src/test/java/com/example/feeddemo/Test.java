@@ -1,5 +1,6 @@
 package com.example.feeddemo;
 
+import cn.hutool.core.collection.CollUtil;
 import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONObject;
 import lombok.AllArgsConstructor;
@@ -21,7 +22,10 @@ public class Test {
         userIds.add(2L);
         userIds.add(3L);
         userIds.add(4L);
-        userIds.add(null);
+//        userIds.add(null);
+
+
+        Object last = CollUtil.getLast(userIds);
 
         List<Person> ps = new ArrayList<>();
         ps.add(Person.builder().username("zhangsan").build());
