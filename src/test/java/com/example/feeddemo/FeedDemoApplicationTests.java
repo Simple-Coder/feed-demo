@@ -13,10 +13,13 @@ import java.util.Date;
 class FeedDemoApplicationTests {
     @Autowired
     private FeedInfoMapper feedInfoMapper;
-    @Test
-    void contextLoads() {
 
-    }
+//    @Autowired
+//    private RocketMQProducer testAProducer;
+//    @Test
+//    void contextLoads() {
+//        System.out.println();
+//    }
 
     @Test
     public void t1(){
